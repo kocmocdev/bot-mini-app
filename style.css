@@ -4,15 +4,14 @@ body {
     background-color: #E6D2B5; /* Светлый латте */
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     height: 100vh;
-    overflow: hidden; /* Чтобы не было скролла */
+    overflow: hidden;
 }
 
-/* --- АВАТАРКА --- */
 .avatar-container {
     position: absolute;
-    top: 40px; /* Отступ сверху */
+    top: 40px;
     left: 50%;
-    transform: translateX(-50%); /* Центрирование по горизонтали */
+    transform: translateX(-50%);
     z-index: 10;
 }
 
@@ -23,9 +22,15 @@ body {
     border-radius: 50%;
     border: 3px solid #4A3B2A;
     box-shadow: 0 4px 15px rgba(74, 59, 42, 0.3);
-    background-color: #fff;
+    background-color: #ccc; /* Цвет заглушки, если фото нет */
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: block; /* Гарантирует отображение даже без src */
+}
+
+/* Если фото загрузилось, убираем серый фон */
+.avatar[src] {
+    background-color: transparent;
 }
 
 .avatar:hover {
@@ -33,7 +38,7 @@ body {
     box-shadow: 0 6px 20px rgba(74, 59, 42, 0.4);
 }
 
-/* --- МОДАЛЬНОЕ ОКНО --- */
+/* Остальные стили модального окна без изменений */
 .modal {
     display: none;
     position: fixed;
@@ -44,11 +49,9 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
-    
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -69,7 +72,9 @@ body {
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     border: 2px solid rgba(255,255,255,0.2);
-    animation: zoomIn 0.3s ease forwards; 
+    animation: zoomIn 0.3s ease forwards;
+    background-color: #ccc; /* Заглушка для модалки */
+    object-fit: cover;
 }
 
 .modal.closing .modal-content {
